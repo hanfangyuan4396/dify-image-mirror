@@ -3,6 +3,7 @@ name: Sync dify images to ACR(Alibaba Cloud Container Registry)
 on:
   schedule:
     - cron: '0 */4 * * *'
+  workflow_dispatch:
 
 env:
   ACR_REGISTRY: registry.cn-hangzhou.aliyuncs.com
