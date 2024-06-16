@@ -1,0 +1,32 @@
+name: Sync dify images to ACR(Alibaba Cloud Container Registry)
+
+on:
+  schedule:
+    - cron: '0 */4 * * *'
+
+env:
+  ACR_REGISTRY: registry.cn-hangzhou.aliyuncs.com
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Login to the ACR
+      uses: docker/login-action@v2
+      with:
+        registry: ${{ env.ACR_REGISTRY }}
+        username: ${{ secrets.ACR_USERNAME }}
+        password: ${{ secrets.ACR_PASSWORD }}
+  
+      - name: Pull dify web image from Docker Hub
+        run: docker pull langgenius/dify-web:latest
+
+      - name: Tag dify web image for ACR
+        run: docker tag langgenius/dify-web:latest ${{ env.ACR_REGISTRY }}/${{ secrets.ACR_NAMESPACE }}/dify-web:latest
+
+      - name: Push dify web image to Aliyun Registry
+        run: docker push ${{ env.ACR_REGISTRY }}/${{ secrets.ACR_NAMESPACE }}/dify-web:latest
