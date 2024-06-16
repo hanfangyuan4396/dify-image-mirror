@@ -22,7 +22,16 @@ jobs:
           registry: ${{ env.ACR_REGISTRY }}
           username: ${{ secrets.ACR_USERNAME }}
           password: ${{ secrets.ACR_PASSWORD }}
-  
+
+      - name: Pull dify api image from Docker Hub
+        run: docker pull langgenius/dify-api:latest
+
+      - name: Tag dify api image for ACR
+        run: docker tag langgenius/dify-api:latest ${{ env.ACR_REGISTRY }}/${{ secrets.ACR_NAMESPACE }}/dify-api:latest
+
+      - name: Push dify api image to Aliyun Registry
+        run: docker push ${{ env.ACR_REGISTRY }}/${{ secrets.ACR_NAMESPACE }}/dify-api:latest
+
       - name: Pull dify web image from Docker Hub
         run: docker pull langgenius/dify-web:latest
 
@@ -31,3 +40,57 @@ jobs:
 
       - name: Push dify web image to Aliyun Registry
         run: docker push ${{ env.ACR_REGISTRY }}/${{ secrets.ACR_NAMESPACE }}/dify-web:latest
+
+      - name: Pull postgres image from Docker Hub
+        run: docker pull postgres:15-alpine
+
+      - name: Tag postgres image for ACR
+        run: docker tag postgres:15-alpine ${{ env.ACR_REGISTRY }}/${{ secrets.ACR_NAMESPACE }}/postgres:15-alpine
+
+      - name: Push postgres image to Aliyun Registry
+        run: docker push ${{ env.ACR_REGISTRY }}/${{ secrets.ACR_NAMESPACE }}/postgres:15-alpine
+
+      - name: Pull redis image from Docker Hub
+        run: docker pull redis:6-alpine
+
+      - name: Tag redis image for ACR
+        run: docker tag redis:6-alpine ${{ env.ACR_REGISTRY }}/${{ secrets.ACR_NAMESPACE }}/redis:6-alpine
+
+      - name: Push redis image to Aliyun Registry
+        run: docker push ${{ env.ACR_REGISTRY }}/${{ secrets.ACR_NAMESPACE }}/redis:6-alpine
+
+      - name: Pull weaviate image from Docker Hub
+        run: docker pull semitechnologies/weaviate:1.19.0
+
+      - name: Tag weaviate image for ACR
+        run: docker tag semitechnologies/weaviate:1.19.0 ${{ env.ACR_REGISTRY }}/${{ secrets.ACR_NAMESPACE }}/semitechnologies/weaviate:1.19.0
+
+      - name: Push weaviate image to Aliyun Registry
+        run: docker push ${{ env.ACR_REGISTRY }}/${{ secrets.ACR_NAMESPACE }}/semitechnologies/weaviate:1.19.0
+
+      - name: Pull dify sandbox image from Docker Hub
+        run: docker pull langgenius/dify-sandbox:latest
+
+      - name: Tag dify sandbox image for ACR
+        run: docker tag langgenius/dify-sandbox:latest ${{ env.ACR_REGISTRY }}/${{ secrets.ACR_NAMESPACE }}/langgenius/dify-sandbox:latest
+
+      - name: Push dify sandbox image to Aliyun Registry
+        run: docker push ${{ env.ACR_REGISTRY }}/${{ secrets.ACR_NAMESPACE }}/langgenius/dify-sandbox:latest
+
+      - name: Pull squid image from Docker Hub
+        run: docker pull ubuntu/squid:latest
+
+      - name: Tag squid image for ACR
+        run: docker tag ubuntu/squid:latest ${{ env.ACR_REGISTRY }}/${{ secrets.ACR_NAMESPACE }}/ubuntu/squid:latest
+
+      - name: Push squid image to Aliyun Registry
+        run: docker push ${{ env.ACR_REGISTRY }}/${{ secrets.ACR_NAMESPACE }}/ubuntu/squid:latest
+
+      - name: Pull nginx image from Docker Hub
+        run: docker pull nginx:latest:latest
+
+      - name: Tag nginx image for ACR
+        run: docker tag nginx:latest:latest ${{ env.ACR_REGISTRY }}/${{ secrets.ACR_NAMESPACE }}/nginx:latest:latest
+
+      - name: Push nginx image to Aliyun Registry
+        run: docker push ${{ env.ACR_REGISTRY }}/${{ secrets.ACR_NAMESPACE }}/nginx:latest:latest
