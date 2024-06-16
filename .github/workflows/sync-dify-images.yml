@@ -63,34 +63,34 @@ jobs:
         run: docker pull semitechnologies/weaviate:1.19.0
 
       - name: Tag weaviate image for ACR
-        run: docker tag semitechnologies/weaviate:1.19.0 ${{ env.ACR_REGISTRY }}/${{ secrets.ACR_NAMESPACE }}/semitechnologies/weaviate:1.19.0
+        run: docker tag semitechnologies/weaviate:1.19.0 ${{ env.ACR_REGISTRY }}/${{ secrets.ACR_NAMESPACE }}/weaviate:1.19.0
 
       - name: Push weaviate image to Aliyun Registry
-        run: docker push ${{ env.ACR_REGISTRY }}/${{ secrets.ACR_NAMESPACE }}/semitechnologies/weaviate:1.19.0
+        run: docker push ${{ env.ACR_REGISTRY }}/${{ secrets.ACR_NAMESPACE }}/weaviate:1.19.0
 
       - name: Pull dify sandbox image from Docker Hub
         run: docker pull langgenius/dify-sandbox:latest
 
       - name: Tag dify sandbox image for ACR
-        run: docker tag langgenius/dify-sandbox:latest ${{ env.ACR_REGISTRY }}/${{ secrets.ACR_NAMESPACE }}/langgenius/dify-sandbox:latest
+        run: docker tag langgenius/dify-sandbox:latest ${{ env.ACR_REGISTRY }}/${{ secrets.ACR_NAMESPACE }}/dify-sandbox:latest
 
       - name: Push dify sandbox image to Aliyun Registry
-        run: docker push ${{ env.ACR_REGISTRY }}/${{ secrets.ACR_NAMESPACE }}/langgenius/dify-sandbox:latest
+        run: docker push ${{ env.ACR_REGISTRY }}/${{ secrets.ACR_NAMESPACE }}/dify-sandbox:latest
 
       - name: Pull squid image from Docker Hub
         run: docker pull ubuntu/squid:latest
 
       - name: Tag squid image for ACR
-        run: docker tag ubuntu/squid:latest ${{ env.ACR_REGISTRY }}/${{ secrets.ACR_NAMESPACE }}/ubuntu/squid:latest
+        run: docker tag ubuntu/squid:latest ${{ env.ACR_REGISTRY }}/${{ secrets.ACR_NAMESPACE }}/squid:latest
 
       - name: Push squid image to Aliyun Registry
-        run: docker push ${{ env.ACR_REGISTRY }}/${{ secrets.ACR_NAMESPACE }}/ubuntu/squid:latest
+        run: docker push ${{ env.ACR_REGISTRY }}/${{ secrets.ACR_NAMESPACE }}/squid:latest
 
       - name: Pull nginx image from Docker Hub
-        run: docker pull nginx:latest:latest
+        run: docker pull nginx:latest
 
       - name: Tag nginx image for ACR
-        run: docker tag nginx:latest:latest ${{ env.ACR_REGISTRY }}/${{ secrets.ACR_NAMESPACE }}/nginx:latest:latest
+        run: docker tag nginx:latest ${{ env.ACR_REGISTRY }}/${{ secrets.ACR_NAMESPACE }}/nginx:latest
 
       - name: Push nginx image to Aliyun Registry
-        run: docker push ${{ env.ACR_REGISTRY }}/${{ secrets.ACR_NAMESPACE }}/nginx:latest:latest
+        run: docker push ${{ env.ACR_REGISTRY }}/${{ secrets.ACR_NAMESPACE }}/nginx:latest
