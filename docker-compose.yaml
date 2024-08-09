@@ -3,7 +3,7 @@ services:
   # API service
   api:
     # image: langgenius/dify-api:0.6.11
-    image: registry.cn-hangzhou.aliyuncs.com/your-acr-namespace/dify-api:latest
+    image: registry.cn-hangzhou.aliyuncs.com/dify-tnb/dify-api:latest
     restart: always
     environment:
       # Startup mode, 'api' starts the API server.
@@ -205,7 +205,7 @@ services:
   # The Celery worker for processing the queue.
   worker:
     # image: langgenius/dify-api:0.6.11
-    image: registry.cn-hangzhou.aliyuncs.com/your-acr-namespace/dify-api:latest
+    image: registry.cn-hangzhou.aliyuncs.com/dify-tnb/dify-api:latest
     restart: always
     environment:
       CONSOLE_WEB_URL: ''
@@ -347,7 +347,7 @@ services:
   # Frontend web application.
   web:
     # image: langgenius/dify-web:0.6.11
-    image: registry.cn-hangzhou.aliyuncs.com/your-acr-namespace/dify-web:latest
+    image: registry.cn-hangzhou.aliyuncs.com/dify-tnb/dify-web:latest
     restart: always
     environment:
       # The base URL of console application api server, refers to the Console base URL of WEB service if console domain is
@@ -367,7 +367,7 @@ services:
   # The postgres database.
   db:
     # image: postgres:15-alpine
-    image: registry.cn-hangzhou.aliyuncs.com/your-acr-namespace/postgres:15-alpine
+    image: registry.cn-hangzhou.aliyuncs.com/dify-tnb/postgres:15-alpine
     restart: always
     environment:
       PGUSER: postgres
@@ -391,7 +391,7 @@ services:
   # The redis cache.
   redis:
     # image: redis:6-alpine
-    image: registry.cn-hangzhou.aliyuncs.com/your-acr-namespace/redis:6-alpine
+    image: registry.cn-hangzhou.aliyuncs.com/dify-tnb/redis:6-alpine
     restart: always
     volumes:
       # Mount the redis data directory to the container.
@@ -407,7 +407,7 @@ services:
   # The Weaviate vector store.
   weaviate:
     # image: semitechnologies/weaviate:1.19.0
-    image: registry.cn-hangzhou.aliyuncs.com/your-acr-namespace/weaviate:1.19.0
+    image: registry.cn-hangzhou.aliyuncs.com/dify-tnb/weaviate:1.19.0
     restart: always
     volumes:
       # Mount the Weaviate data directory to the container.
@@ -432,7 +432,7 @@ services:
   # The DifySandbox
   sandbox:
     # image: langgenius/dify-sandbox:0.2.1
-    image: registry.cn-hangzhou.aliyuncs.com/your-acr-namespace/dify-sandbox:latest
+    image: registry.cn-hangzhou.aliyuncs.com/dify-tnb/dify-sandbox:latest
     restart: always
     environment:
       # The DifySandbox configurations
@@ -455,7 +455,7 @@ services:
   # https://docs.dify.ai/getting-started/install-self-hosted/install-faq#id-16.-why-is-ssrf_proxy-needed
   ssrf_proxy:
     # image: ubuntu/squid:latest
-    image: registry.cn-hangzhou.aliyuncs.com/your-acr-namespace/squid:latest
+    image: registry.cn-hangzhou.aliyuncs.com/dify-tnb/squid:latest
     restart: always
     volumes:
       # pls clearly modify the squid.conf file to fit your network environment.
@@ -508,7 +508,7 @@ services:
   # used for reverse proxying the API service and Web service.
   nginx:
     # image: nginx:latest
-    image: registry.cn-hangzhou.aliyuncs.com/your-acr-namespace/nginx:latest
+    image: registry.cn-hangzhou.aliyuncs.com/dify-tnb/nginx:latest
     restart: always
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
